@@ -42,10 +42,37 @@ const App = () => {
     }))
   };
 
+  const commentOnPostOnEnterKey = (evt, postId) => {
+    
+    
+    if (evt.keyCode === 13) {
+      // debugger;
+      const { value } = evt.target;
+      console.log(value);
+      setPosts(posts.map((post) => {
+        if (post.id === postId){
+          // const lastCommentId = post.comments[(post.comments.length - 1)].id;
+          // console.log(lastCommentId);
+          return {...post.comments[(post.comments.length - 1)], 
+            id: (post.comments[(post.comments.length - 1)].id + 1),
+            username: "Josh",
+            text: value
+          };
+        }else{
+          return post;
+        }
+        //   post.comments.push()
+        //   post.comments
+        //   post.comments.push()
+        // } ? {...post, comments: (post["comments"] + value)} : post   
+      }))
+    }
+  };
+
   return (
     <div className='App'>
       <SearchBar />
-      <Posts likePost={likePost} posts={posts} />
+      <Posts likePost={likePost} posts={posts} commentOnPostOnEnterKey={commentOnPostOnEnterKey} />
       {/* Add SearchBar and Posts here to render them */}
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
