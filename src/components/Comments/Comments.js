@@ -6,6 +6,7 @@ const Comments = props => {
   // 🔥 Make sure the parent of Comments is passing the right props!
   const { comments } = props;
   console.log(comments);
+  // console.log(comments);
   return (
     <div> 
       {
@@ -14,7 +15,7 @@ const Comments = props => {
           // return <><div key={comment.id}><b>{comment.username}</b> {comment.text}</div></>
           }
         )
-      }
+      } 
     </div>
   );
 };

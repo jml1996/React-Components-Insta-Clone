@@ -5,7 +5,7 @@
 */
 
 // Import the state hook
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LikeSection from './components/Posts/LikeSection';
 import Post from './components/Posts/Post';
 import PostHeader from './components/Posts/PostHeader';
@@ -15,9 +15,6 @@ import dummyData from './dummy-data'
 // Import the Posts (plural!) and SearchBar components, since they are used inside App component
 // Import the dummyData
 import './App.css';
-console.log(dummyData);
-const x = {...dummyData[0], likes: (dummyData[0]["likes"] + 1)};
-console.log(x);
 
 const App = () => {
   const [ posts, setPosts ] = useState(dummyData);
@@ -42,37 +39,14 @@ const App = () => {
     }))
   };
 
-  const commentOnPostOnEnterKey = (evt, postId) => {
-    
-    
-    if (evt.keyCode === 13) {
-      // debugger;
-      const { value } = evt.target;
-      console.log(value);
-      setPosts(posts.map((post) => {
-        if (post.id === postId){
-          // const lastCommentId = post.comments[(post.comments.length - 1)].id;
-          // console.log(lastCommentId);
-          return {...post.comments[(post.comments.length - 1)], 
-            id: (post.comments[(post.comments.length - 1)].id + 1),
-            username: "Josh",
-            text: value
-          };
-        }else{
-          return post;
-        }
-        //   post.comments.push()
-        //   post.comments
-        //   post.comments.push()
-        // } ? {...post, comments: (post["comments"] + value)} : post   
-      }))
-    }
-  };
-
   return (
     <div className='App'>
       <SearchBar />
-      <Posts likePost={likePost} posts={posts} commentOnPostOnEnterKey={commentOnPostOnEnterKey} />
+
+      <Posts likePost={likePost} posts={posts} />
+      {/* <Posts likePost={likePost} posts={posts} commentOnPostOnEnterKey={commentOnPostOnEnterKey} /> */}
+
+
       {/* Add SearchBar and Posts here to render them */}
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
