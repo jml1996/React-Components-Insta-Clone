@@ -17,8 +17,10 @@ const CommentBar = (props) => {
 
     
     const commentOnPostOnEnterKey = (evt, postId) => {
+        
         if (evt.keyCode === 13) {
             // debugger;
+            evt.preventDefault();
 
           const { value } = evt.target;
           const josh = {...com[(com.length - 1)], 
@@ -26,27 +28,7 @@ const CommentBar = (props) => {
             username: "Josh",
             text: value
           };
-        //   const commentsWithNew = com.push(josh);
-        //   console.log(commentsWithNew);
-            // console.log([...com, josh]);
             setCom([...com, josh]);
-        //   console.log(com);
-        //   console.log(com);
-
-        //   setPosts(posts.map((post) => {
-        //     if (post.id === postId){
-        //       const josh = {...post.comments[(post.comments.length - 1)], 
-        //         id: (post.comments[(post.comments.length - 1)].id + 1),
-        //         username: "Josh",
-        //         text: value
-        //       };
-        //       post.comments.push(josh);
-        //       return post; 
-        //     }else{
-        //       return post;
-        //     }
-        //   }
-        //   ));
         }else{
             setCom(com);
             console.log(com);
